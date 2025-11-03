@@ -1,0 +1,170 @@
+{
+  "componentsToGenerate": [
+    "Navigation",
+    "Hero",
+    "FeaturedDishes",
+    "Stats",
+    "Testimonials",
+    "MenuCategory",
+    "MenuItem",
+    "MenuFilter",
+    "OrderCart",
+    "OrderItem",
+    "CheckoutForm",
+    "ReservationForm",
+    "DatePicker",
+    "TimeSlotSelector",
+    "ContactForm",
+    "Map",
+    "LocationInfo",
+    "HoursDisplay",
+    "Footer",
+    "Button",
+    "Card",
+    "Modal",
+    "Input",
+    "Select"
+  ],
+  "estimatedChallenges": [
+    {
+      "component": "Navigation",
+      "challenge": "Implementing responsive mobile menu with smooth animations and active page states across all pages",
+      "mitigation": "Use React state for menu toggle, CSS transitions for animations, and Next.js usePathname hook for active states"
+    },
+    {
+      "component": "MenuItem",
+      "challenge": "Managing complex state for menu items with customization options and cart integration",
+      "mitigation": "Create a centralized cart context using React Context API, implement proper state management for item customization"
+    },
+    {
+      "component": "OrderCart",
+      "challenge": "Real-time cart updates, quantity management, and price calculations across components",
+      "mitigation": "Use React Context for global cart state, implement useReducer for complex cart operations, ensure proper re-rendering"
+    },
+    {
+      "component": "ReservationForm",
+      "challenge": "Date/time validation, availability checking, and form state management",
+      "mitigation": "Use controlled components, implement date validation logic, create reusable form hooks"
+    },
+    {
+      "component": "DatePicker",
+      "challenge": "Building accessible custom date picker with proper keyboard navigation",
+      "mitigation": "Consider using a library like react-datepicker or build with proper ARIA attributes"
+    },
+    {
+      "component": "MenuFilter",
+      "challenge": "Filtering logic that works with multiple criteria simultaneously",
+      "mitigation": "Implement filter state management, use array methods efficiently, optimize re-renders"
+    },
+    {
+      "component": "Map",
+      "challenge": "Embedding Google Maps and handling API keys securely",
+      "mitigation": "Use iframe embed or react-google-maps library, store API keys in environment variables"
+    },
+    {
+      "component": "ContactForm",
+      "challenge": "Form validation, error handling, and submission feedback",
+      "mitigation": "Use form validation library or custom hooks, implement proper error states and success messages"
+    },
+    {
+      "component": "Modal",
+      "challenge": "Accessible modal with focus trapping and proper z-index management",
+      "mitigation": "Implement focus trap, use portal for rendering, handle escape key and backdrop clicks"
+    },
+    {
+      "component": "Image Optimization",
+      "challenge": "Loading high-quality food images without impacting performance",
+      "mitigation": "Use Next.js Image component, implement lazy loading, provide proper width/height attributes"
+    }
+  ],
+  "fixerContext": {
+    "expectedStructure": "Next.js 14+ App Router structure with app/ directory containing page.tsx files for each route (home at root, /menu, /order, /reservation, /contact, /location). Shared components in components/ folder organized by feature (navigation/, menu/, order/, reservation/, contact/, location/, shared/). Context providers in contexts/ folder for cart and reservation state. Utility functions in lib/ or utils/ folder.",
+    "importPaths": "All component imports should use relative paths from their location. Page files import from '@/components/[feature]/ComponentName'. Shared components use '@/components/shared/ComponentName'. Context imports from '@/contexts/ContextName'.",
+    "commonIssues": [
+      "Missing 'use client' directive in components using hooks (useState, useEffect, useContext)",
+      "Import path mismatches between components/ and app/ directories",
+      "Incorrect Next.js Image component usage (missing width/height or fill prop)",
+      "Context providers not wrapping the app in layout.tsx",
+      "Form components missing proper event type definitions",
+      "Map component trying to access window object during SSR",
+      "Missing key props in mapped menu items or cart items",
+      "Improper handling of async operations in client components",
+      "CSS module import issues or Tailwind class conflicts",
+      "Missing error boundaries for form submissions"
+    ],
+    "criticalRequirements": [
+      "All pages must import and use the same Navigation and Footer components",
+      "Cart context must be accessible from menu, order, and home pages",
+      "Consistent color variables defined in globals.css or Tailwind config",
+      "All forms must have proper validation and error states",
+      "Mobile responsiveness must be tested for all breakpoints",
+      "Images must use Next.js Image component for optimization",
+      "All interactive elements must have proper hover and focus states",
+      "Navigation must highlight the current active page",
+      "All pages must have proper meta tags for SEO"
+    ],
+    "fileStructure": {
+      "app": {
+        "page.tsx": "Home page",
+        "menu/page.tsx": "Menu page",
+        "order/page.tsx": "Order page",
+        "reservation/page.tsx": "Reservation page",
+        "contact/page.tsx": "Contact page",
+        "location/page.tsx": "Location page",
+        "layout.tsx": "Root layout with providers",
+        "globals.css": "Global styles and Tailwind imports"
+      },
+      "components": {
+        "navigation/": [
+          "Navigation.tsx",
+          "MobileMenu.tsx"
+        ],
+        "menu/": [
+          "MenuCategory.tsx",
+          "MenuItem.tsx",
+          "MenuFilter.tsx"
+        ],
+        "order/": [
+          "OrderCart.tsx",
+          "OrderItem.tsx",
+          "CheckoutForm.tsx"
+        ],
+        "reservation/": [
+          "ReservationForm.tsx",
+          "DatePicker.tsx",
+          "TimeSlotSelector.tsx"
+        ],
+        "contact/": [
+          "ContactForm.tsx",
+          "Map.tsx"
+        ],
+        "location/": [
+          "LocationInfo.tsx",
+          "HoursDisplay.tsx"
+        ],
+        "home/": [
+          "Hero.tsx",
+          "FeaturedDishes.tsx",
+          "Stats.tsx",
+          "Testimonials.tsx"
+        ],
+        "shared/": [
+          "Footer.tsx",
+          "Button.tsx",
+          "Card.tsx",
+          "Modal.tsx",
+          "Input.tsx",
+          "Select.tsx"
+        ]
+      },
+      "contexts": {
+        "CartContext.tsx": "Shopping cart state management",
+        "ReservationContext.tsx": "Reservation state management"
+      },
+      "lib": {
+        "menuData.ts": "Menu items data",
+        "utils.ts": "Utility functions"
+      }
+    }
+  }
+}
